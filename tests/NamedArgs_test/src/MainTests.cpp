@@ -1,22 +1,15 @@
 #include <gtest/gtest.h>
 
-enum class Param;
-#define TAG_MACRO Param
-#include <Charger/NamedArgs/Parser.hpp>
-
-enum class Param
-{
-  AGE,
-  NAME,
-  LAST_NAME
-};
-
-namespace Arguments {
-REGISTER_TAG(AGE,       int);
-REGISTER_TAG(NAME,      std::string);
-REGISTER_TAG(LAST_NAME, std::string);
-} // namespace Arguments
-#undef TAG_MACRO
+#include <Tests/ChildClass.hpp>
 
 TEST(NamedArgs, First)
-{}
+{
+  const std::string NAME      = "John";
+  const std::string LAST_NAME = "Doe";
+  const size_t      AGE       = 23;
+
+  Tests::ChildClass obj;
+  obj.configure(Arguments::NAME      = NAME,
+                Arguments::AGE       = AGE,
+                Arguments::LAST_NAME = LAST_NAME);
+}

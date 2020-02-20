@@ -1,11 +1,21 @@
 function (make_gtest TARGET_NAME)
   find_package(GTest REQUIRED)
 
+  file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp")
   file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
-  target_sources(${TARGET_NAME} PRIVATE ${SOURCES})
+  target_sources(${TARGET_NAME}
+    PRIVATE
+      ${HEADERS}
+      ${SOURCES}
+  )
 
   target_link_libraries(${TARGET_NAME} PRIVATE ${GTEST_LIBRARIES})
-  target_include_directories(${TARGET_NAME} PRIVATE ${GTEST_INCLUDE_DIRS})
+  target_include_directories(${TARGET_NAME}
+    PUBLIC
+      ${CMAKE_CURRENT_SOURCE_DIR}/include
+    PRIVATE
+      ${GTEST_INCLUDE_DIRS}
+  )
 endfunction()
 
 function (getProjectName RESULT)

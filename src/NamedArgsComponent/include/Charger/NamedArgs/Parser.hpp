@@ -34,7 +34,7 @@ public:
   template<typename T, typename T2>
   static T handle(T2 value)
   {
-    return *reinterpret_cast<T>(&value);
+    return *reinterpret_cast<T*>(&value);
   }
 
 };
