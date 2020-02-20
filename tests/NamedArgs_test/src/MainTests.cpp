@@ -2,7 +2,7 @@
 
 #include <Tests/ChildClass.hpp>
 
-TEST(NamedArgs, First)
+TEST(NamedArgs, FullConfigure)
 {
   const std::string NAME      = "John";
   const std::string LAST_NAME = "Doe";
@@ -12,4 +12,8 @@ TEST(NamedArgs, First)
   obj.configure(Arguments::NAME      = NAME,
                 Arguments::AGE       = AGE,
                 Arguments::LAST_NAME = LAST_NAME);
+
+  EXPECT_EQ(AGE,       obj.getAge());
+  EXPECT_EQ(NAME,      obj.getName());
+  EXPECT_EQ(LAST_NAME, obj.getLastName());
 }
