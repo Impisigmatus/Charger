@@ -19,17 +19,15 @@ obj.configure(Arguments::AGE       = "29",
 
 ## 5. Как пользоваться?
 ### 5.1 Регистрация именованных аргументов
-Делаем forward declaration для нашего будущего перечисления имен аргументов и задаем TAG_MACRO для указания рабочего перечисления.
+Подключаем заголовочные файлы:
 ```
-enum class Param;
-#define TAG_MACRO Param
-#include <Charger/NamedArgs/TagRegister.hpp>
-#include <Charger/NamedArgs/Parser.hpp>
+#include <Charger/NamedArgs/TagRegister.hpp> // Для регистрации именованных аргументов
+#include <Charger/NamedArgs/Parser.hpp> // Для разбора Variadic template на  необходимые параметры
 ```
 
-Создаем перечисление в котором будут перечислены все возможные имена аргументов(enum **class** обязателен для forward declaration):
+Создаем перечисление в котором будут перечислены все возможные имена аргументов:
 ```
-enum class Param
+enum Param
 {
   AGE,
   NAME,
@@ -37,29 +35,24 @@ enum class Param
 };
 ```
 
-В необходимом пространстве имен регистрируем наши именованные аргументы:
+В необходимом пространстве имен регистрируем наши именованные аргументы(Первым параметром макроса идет наше перечисление, далее имя аргумента и последним тип аргумента):
 ```
 namespace Arguments {
-REGISTER_TAG(AGE,       size_t);
-REGISTER_TAG(NAME,      std::string);
-REGISTER_TAG(LAST_NAME, std::string);
+REGISTER_TAG(Param, AGE,       size_t);
+REGISTER_TAG(Param, NAME,      std::string);
+REGISTER_TAG(Param, LAST_NAME, std::string);
 } // namespace Arguments
 ```
 
-Убираем определение TAG_MACRO:
-```
-#undef TAG_MACRO
-```
-
 ### 5.2 Использование именованных аргументов
-Пишем метод(функцию) с пееременным числом аргументов(Variadic template) в котором с помощью статического метода парсинга получаем из пакета нужные данные(Если имя аргумента не найдено  полученном пакете, то он определится конструктором по-умолчанию):
+Пишем метод(функцию) с пееременным числом аргументов(**Variadic template**) в котором с помощью статического метода парсинга получаем из пакета нужные данные(Если имя аргумента не найдено  полученном пакете, то он определится конструктором по-умолчанию):
 ```
 template<typename ...Args>
 void configure(const Args&... args)
 {
-  set(Charger::NamedArgs::Parser::getOption<size_t>     (Param::AGE,       args...),
-      Charger::NamedArgs::Parser::getOption<std::string>(Param::NAME,      args...),
-      Charger::NamedArgs::Parser::getOption<std::string>(Param::LAST_NAME, args...));
+  set(Charger::NamedArgs::Parser<Param>::getOption<size_t>     (Param::AGE,       args...),
+      Charger::NamedArgs::Parser<Param>::getOption<std::string>(Param::NAME,      args...),
+      Charger::NamedArgs::Parser<Param>::getOption<std::string>(Param::LAST_NAME, args...));
 }
 ```
 

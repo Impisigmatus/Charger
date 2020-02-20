@@ -4,12 +4,12 @@
 #include <charger_namedargs_export.h>
 
 #define \
-  REGISTER_TAG(NAME, TYPE) \
+  REGISTER_TAG(TAG, NAME, TYPE) \
   struct CHARGER_NAMEDARGS_EXPORT NAME##_tag \
   { \
-    std::pair<TAG_MACRO, TYPE> operator=(const TYPE& value) const \
+    std::pair<TAG, TYPE> operator=(const TYPE& value) const \
     { \
-      return std::make_pair(TAG_MACRO::NAME, value); \
+      return std::make_pair(TAG::NAME, value); \
     } \
     NAME##_tag(int) {} \
   }; \
