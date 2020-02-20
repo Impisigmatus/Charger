@@ -3,10 +3,6 @@
 
 #include <charger_namedargs_export.h>
 
-#include <Charger/NamedArgs/TagRegister.hpp>
-
-#include <string>
-
 namespace Charger {
 namespace NamedArgs {
 

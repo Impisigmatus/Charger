@@ -5,6 +5,7 @@
 
 enum class Param;
 #define TAG_MACRO Param
+#include <Charger/NamedArgs/TagRegister.hpp>
 #include <Charger/NamedArgs/Parser.hpp>
 
 enum class Param
