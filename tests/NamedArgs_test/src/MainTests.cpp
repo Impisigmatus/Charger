@@ -48,7 +48,7 @@ TEST(NamedArgs, ReverseConfigure)
 
 TEST(NamedArgs, AmbiguousConfigure)
 {
-  const size_t      AGE = 23;
+  const size_t AGE = 23;
 
   Tests::ConfigureClass obj;
   obj.configure(Arguments::AGE = AGE,
