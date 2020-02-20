@@ -1,0 +1,1 @@
+project(Charger LANGUAGES CXX)
