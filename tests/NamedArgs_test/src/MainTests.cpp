@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <Tests/ChildClass.hpp>
+#include <Tests/ConfigureClass.hpp>
 
 TEST(NamedArgs, FullConfigure)
 {
@@ -8,7 +8,7 @@ TEST(NamedArgs, FullConfigure)
   const std::string NAME      = "John";
   const std::string LAST_NAME = "Doe";
 
-  Tests::ChildClass obj;
+  Tests::ConfigureClass obj;
   obj.configure(Arguments::AGE       = AGE,
                 Arguments::NAME      = NAME,
                 Arguments::LAST_NAME = LAST_NAME);
@@ -22,7 +22,7 @@ TEST(NamedArgs, OneArgumentConfigure)
 {
   const std::string NAME = "John";
 
-  Tests::ChildClass obj;
+  Tests::ConfigureClass obj;
   obj.configure(Arguments::NAME = NAME);
 
   EXPECT_EQ(size_t(),      obj.getAge());
@@ -36,7 +36,7 @@ TEST(NamedArgs, ReverseConfigure)
   const std::string NAME      = "John";
   const std::string LAST_NAME = "Doe";
 
-  Tests::ChildClass obj;
+  Tests::ConfigureClass obj;
   obj.configure(Arguments::LAST_NAME = LAST_NAME,
                 Arguments::AGE       = AGE,
                 Arguments::NAME      = NAME);
@@ -50,7 +50,7 @@ TEST(NamedArgs, AmbiguousConfigure)
 {
   const size_t      AGE = 23;
 
-  Tests::ChildClass obj;
+  Tests::ConfigureClass obj;
   obj.configure(Arguments::AGE = AGE,
                 Arguments::AGE = 24);
 

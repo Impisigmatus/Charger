@@ -1,5 +1,5 @@
-#ifndef TESTS_CHILD_CLASS_HPP
-#define TESTS_CHILD_CLASS_HPP
+#ifndef TESTS_CONFIGURE_CLASS_HPP
+#define TESTS_CONFIGURE_CLASS_HPP
 
 #include <Tests/BaseClass.hpp>
 
@@ -23,7 +23,7 @@ REGISTER_TAG(LAST_NAME, std::string);
 
 namespace Tests {
 
-class ChildClass : public BaseClass
+class ConfigureClass : public BaseClass
 {
 public:
   template<typename ...Args>
@@ -38,4 +38,4 @@ public:
 
 } // namespace Tests
 
-#endif // TESTS_CHILD_CLASS_HPP
+#endif // TESTS_CONFIGURE_CLASS_HPP
