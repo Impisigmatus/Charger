@@ -6,13 +6,14 @@
 namespace Charger {
 namespace NamedArgs {
 
+template<typename Tag>
 class CHARGER_NAMEDARGS_EXPORT Parser
 {
 public:
   Parser() = default;
 
   template<typename T, typename T2, typename ...Args>
-  static T getOption(const TAG_MACRO& tag, const std::pair<TAG_MACRO, T2>& arg, const Args&... args)
+  static T getOption(const Tag& tag, const std::pair<Tag, T2>& arg, const Args&... args)
   {
     if (arg.first == tag)
       return handle<T>(arg.second);
@@ -20,7 +21,7 @@ public:
   }
 
   template<typename T, typename T2>
-  static T getOption(const TAG_MACRO& tag, const std::pair<TAG_MACRO, T2>& arg)
+  static T getOption(const Tag& tag, const std::pair<Tag, T2>& arg)
   {
     if (arg.first == tag)
       return handle<T>(arg.second);

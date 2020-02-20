@@ -3,12 +3,12 @@
 
 #include <Tests/BaseClass.hpp>
 
-enum class Param;
-#define TAG_MACRO Param
-#include <Charger/NamedArgs/TagRegister.hpp>
 #include <Charger/NamedArgs/Parser.hpp>
+#include <Charger/NamedArgs/TagRegister.hpp>
 
-enum class Param
+namespace Tests {
+
+enum Param
 {
   AGE,
   NAME,
@@ -16,13 +16,10 @@ enum class Param
 };
 
 namespace Arguments {
-REGISTER_TAG(AGE,       size_t);
-REGISTER_TAG(NAME,      std::string);
-REGISTER_TAG(LAST_NAME, std::string);
+REGISTER_TAG(Param, AGE,       size_t);
+REGISTER_TAG(Param, NAME,      std::string);
+REGISTER_TAG(Param, LAST_NAME, std::string);
 } // namespace Arguments
-#undef TAG_MACRO
-
-namespace Tests {
 
 class ConfigureClass : public BaseClass
 {
@@ -30,9 +27,9 @@ public:
   template<typename ...Args>
   void configure(const Args&... args)
   {
-    set(Charger::NamedArgs::Parser::getOption<size_t>     (Param::AGE,       args...),
-        Charger::NamedArgs::Parser::getOption<std::string>(Param::NAME,      args...),
-        Charger::NamedArgs::Parser::getOption<std::string>(Param::LAST_NAME, args...));
+    set(Charger::NamedArgs::Parser<Param>::getOption<size_t>     (Param::AGE,       args...),
+        Charger::NamedArgs::Parser<Param>::getOption<std::string>(Param::NAME,      args...),
+        Charger::NamedArgs::Parser<Param>::getOption<std::string>(Param::LAST_NAME, args...));
   }
 
 };

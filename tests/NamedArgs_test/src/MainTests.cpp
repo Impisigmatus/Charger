@@ -9,9 +9,9 @@ TEST(NamedArgs, FullConfigure)
   const std::string LAST_NAME = "Doe";
 
   Tests::ConfigureClass obj;
-  obj.configure(Arguments::AGE       = AGE,
-                Arguments::NAME      = NAME,
-                Arguments::LAST_NAME = LAST_NAME);
+  obj.configure(Tests::Arguments::AGE       = AGE,
+                Tests::Arguments::NAME      = NAME,
+                Tests::Arguments::LAST_NAME = LAST_NAME);
 
   EXPECT_EQ(AGE,       obj.getAge());
   EXPECT_EQ(NAME,      obj.getName());
@@ -23,7 +23,7 @@ TEST(NamedArgs, OneArgumentConfigure)
   const std::string NAME = "John";
 
   Tests::ConfigureClass obj;
-  obj.configure(Arguments::NAME = NAME);
+  obj.configure(Tests::Arguments::NAME = NAME);
 
   EXPECT_EQ(size_t(),      obj.getAge());
   EXPECT_EQ(NAME,          obj.getName());
@@ -37,9 +37,9 @@ TEST(NamedArgs, ReverseConfigure)
   const std::string LAST_NAME = "Doe";
 
   Tests::ConfigureClass obj;
-  obj.configure(Arguments::LAST_NAME = LAST_NAME,
-                Arguments::AGE       = AGE,
-                Arguments::NAME      = NAME);
+  obj.configure(Tests::Arguments::LAST_NAME = LAST_NAME,
+                Tests::Arguments::AGE       = AGE,
+                Tests::Arguments::NAME      = NAME);
 
   EXPECT_EQ(AGE,       obj.getAge());
   EXPECT_EQ(NAME,      obj.getName());
@@ -51,8 +51,8 @@ TEST(NamedArgs, AmbiguousConfigure)
   const size_t AGE = 23;
 
   Tests::ConfigureClass obj;
-  obj.configure(Arguments::AGE = AGE,
-                Arguments::AGE = 24);
+  obj.configure(Tests::Arguments::AGE = AGE,
+                Tests::Arguments::AGE = 24);
 
   EXPECT_EQ(AGE,           obj.getAge());
   EXPECT_EQ(std::string(), obj.getName());
