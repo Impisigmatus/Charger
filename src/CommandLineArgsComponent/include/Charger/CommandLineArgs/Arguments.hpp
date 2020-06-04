@@ -9,8 +9,9 @@ namespace CommandLineArgs {
 class CHARGER_COMMANDLINEARGS_EXPORT Arguments
 {
 public:
-  Arguments();
-  ~Arguments();
+  Arguments() = default;
+
+  void parse(int argc, const char** argv);
 
 };
 

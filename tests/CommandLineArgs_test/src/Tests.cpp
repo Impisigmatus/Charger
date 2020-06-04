@@ -2,7 +2,14 @@
 
 #include <Tests/Fixation.hpp>
 
+const int          ARGC   = 3;
+static const char* ARGV[] = {
+  "arg1",
+  "arg2",
+  "arg3"
+};
+
 TEST_F(CommandLineArgsF, Empty)
 {
-  (void)obj;
+  obj->parse(ARGC, ARGV);
 }

@@ -5,14 +5,10 @@
 namespace Charger {
 namespace CommandLineArgs {
 
-Arguments::Arguments()
+void Arguments::parse(int argc, const char** argv)
 {
-  std::cerr << "Constructor\n";
-}
-
-Arguments::~Arguments()
-{
-  std::cerr << "Destructor\n";
+  for (int i=0; i < argc; i++)
+    std::cout << i << ") " << argv[i] << std::endl;
 }
 
 } // namespace CommandLineArgs
