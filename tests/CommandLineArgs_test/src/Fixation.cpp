@@ -2,7 +2,7 @@
 
 void CommandLineArgsF::SetUp()
 {
-  obj.reset(new Charger::CommandLineArgs::Stub());
+  obj.reset(new Charger::CommandLineArgs::Arguments());
 }
 
 void CommandLineArgsF::TearDown()

@@ -6,11 +6,11 @@
 namespace Charger {
 namespace CommandLineArgs {
 
-class CHARGER_COMMANDLINEARGS_EXPORT Stub
+class CHARGER_COMMANDLINEARGS_EXPORT Arguments
 {
 public:
-  Stub();
-  ~Stub();
+  Arguments();
+  ~Arguments();
 
 };
 

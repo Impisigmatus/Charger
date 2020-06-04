@@ -1,7 +1,7 @@
 #ifndef TESTS_COMMANDLINEARGS_FIXATION_HPP
 #define TESTS_COMMANDLINEARGS_FIXATION_HPP
 
-#include <Charger/CommandLineArgs/Stub.hpp>
+#include <Charger/CommandLineArgs/Arguments.hpp>
 
 #include <gtest/gtest.h>
 
@@ -15,7 +15,7 @@ public:
   void TearDown() final override;
 
 public:
-  std::shared_ptr<Charger::CommandLineArgs::Stub> obj;
+  std::shared_ptr<Charger::CommandLineArgs::Arguments> obj;
 
 };
 

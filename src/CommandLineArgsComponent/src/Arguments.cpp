@@ -1,16 +1,16 @@
-#include <Stub.hpp>
+#include <Arguments.hpp>
 
 #include <iostream>
 
 namespace Charger {
 namespace CommandLineArgs {
 
-Stub::Stub()
+Arguments::Arguments()
 {
   std::cerr << "Constructor\n";
 }
 
-Stub::~Stub()
+Arguments::~Arguments()
 {
   std::cerr << "Destructor\n";
 }
