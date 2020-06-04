@@ -4,12 +4,14 @@
 
 const int          ARGC   = 3;
 static const char* ARGV[] = {
-  "arg1",
-  "arg2",
-  "arg3"
+  "ProgrammName",
+//  "--help",
+  "-I /var",
+  "--output-file=/usr"
 };
 
 TEST_F(CommandLineArgsF, Empty)
 {
   obj->parse(ARGC, ARGV);
+  obj->handle();
 }
