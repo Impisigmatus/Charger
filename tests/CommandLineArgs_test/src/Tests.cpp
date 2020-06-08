@@ -5,9 +5,9 @@
 const int          ARGC   = 3;
 static const char* ARGV[] = {
   "ProgrammName",
-//  "--help",
+  "-h",
   "-I /var",
-  "--output-file=/usr"
+  "--output=/usr"
 };
 
 TEST_F(CommandLineArgsF, Empty)

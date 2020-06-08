@@ -18,12 +18,8 @@ public:
   void handle() const;
 
 private:
-  boost::program_options::variables_map       mMap;
+  boost::program_options::variables_map       mData;
   boost::program_options::options_description mDesc;
-
-private: // HARDCODE
-  std::string m_inputFilePath;
-  std::string m_outputFilePath;
 
 };
 

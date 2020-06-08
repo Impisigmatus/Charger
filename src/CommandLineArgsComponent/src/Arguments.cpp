@@ -6,38 +6,34 @@ namespace Charger {
 namespace CommandLineArgs {
 
 Arguments::Arguments()
-  : mDesc("Allowed options")
-{}
+  : mDesc("Usage")
+{
+  mDesc.add_options()
+      ("help,h", "For more information")
+      ("input,I", boost::program_options::value<std::string>(), "Input path(example: /path/to)")
+      ("output",  boost::program_options::value<std::string>(), "Output path(example: /path/to)");
+}
 
 void Arguments::parse(int argc, const char** argv)
 {
-  namespace po = boost::program_options;
-
-  mDesc.add_options()("help", "produce help message");
-  mDesc.add_options()
-      ("input-file,I", po::value<std::string>(&m_inputFilePath)->composing(),  "set input file path")
-      ("output-file",  po::value<std::string>(&m_outputFilePath)->composing(), "set output file path")
-      ;
-  po::store(po::parse_command_line(argc, argv, mDesc), mMap);  // парсим переданные аргументы
-  po::notify(mMap); // записываем аргументы в переменные в программе
+  auto data = boost::program_options::parse_command_line(argc, argv, mDesc);
+  boost::program_options::store(data, mData);
+  boost::program_options::notify(mData);
 }
 
 void Arguments::handle() const
 {
-  if (mMap.count("help"))
+  if (mData.count("help"))
   {
-    // То выводим описание меню
     std::cerr << mDesc << std::endl;
     return;
   }
 
-  if (mMap.count("input-file") && mMap.count("output-file"))
-    std::cerr << "Input: " << m_inputFilePath << "\nOutput: " << m_outputFilePath << std::endl;
+  if (mData.count("input") && mData.count("output"))
+    std::cerr << "Input: "  << mData["input"].as<std::string>() << std::endl
+              << "Output: " << mData["output"].as<std::string>() << std::endl;
   else
-  {
-    std::cerr << "Please, use --help option for information" << std::endl;
-    return;
-  }
+    std::cerr << "Please, use --help for more information" << std::endl;\
 }
 
 } // namespace CommandLineArgs
