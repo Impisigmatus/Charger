@@ -21,7 +21,7 @@ public:
     mOptions.add_options()(name.c_str(), semantic, description.c_str());
   }
 
-  void parse(int argc, const char** argv);
+  bool parse(int argc, const char** argv);
 
   void handle() const;
 

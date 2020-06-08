@@ -2,16 +2,25 @@
 
 #include <Tests/Fixation.hpp>
 
-const int          ARGC   = 3;
-static const char* ARGV[] = {
-  "ProgrammName",
-  "-h",
-  "-I /var",
-  "--output=/usr"
-};
-
-TEST_F(CommandLineArgsF, Empty)
+TEST_F(CommandLineArgsF, Help)
 {
-  obj->parse(ARGC, ARGV);
+  const int          ARGC   = 2;
+  static const char* ARGV[] = {
+    "ProgrammName",
+    "-h"
+  };
+
+  EXPECT_FALSE(obj->parse(ARGC, ARGV));
+}
+
+TEST_F(CommandLineArgsF, Args)
+{
+  const int          ARGC   = 3;
+  static const char* ARGV[] = {
+    "ProgrammName",
+    "-I /var",
+    "--output=/usr"
+  };
+  EXPECT_TRUE(obj->parse(ARGC, ARGV));
   obj->handle();
 }
