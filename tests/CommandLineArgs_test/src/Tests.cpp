@@ -39,3 +39,17 @@ TEST_F(CommandLineArgsF, WithoutRequiredArgs)
 
   EXPECT_FALSE(obj->parse(ARGC, ARGV));
 }
+
+TEST_F(CommandLineArgsF, WithoutUnrequiredArgs)
+{
+  const int          ARGC   = 2;
+  static const char* ARGV[] = {
+    "ProgramName",
+    "-I/var"
+  };
+
+  EXPECT_TRUE(obj->parse(ARGC, ARGV));
+  EXPECT_FALSE(obj->has("output"));
+
+  EXPECT_EQ(obj->get<std::string>("output"), std::string());
+}

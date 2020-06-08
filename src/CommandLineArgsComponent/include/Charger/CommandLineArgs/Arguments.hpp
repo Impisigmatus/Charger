@@ -27,7 +27,14 @@ public:
   template<typename T>
   T get(const std::string& name) const
   {
-    return mData[name].as<T>();
+    T result;
+    try
+    {
+      result = mData[name].as<T>();
+    }
+    catch(...)
+    {}
+    return result;
   }
 
   bool parse(int argc, const char** argv);
