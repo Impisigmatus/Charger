@@ -27,6 +27,15 @@ TEST_F(CommandLineArgsF, Args)
 
   EXPECT_EQ(obj->get<std::string>("input"),  "/var");
   EXPECT_EQ(obj->get<std::string>("output"), "/usr");
+}
 
-  EXPECT_TRUE(false) << "Please, use --help for more information";
+TEST_F(CommandLineArgsF, WithoutRequiredArgs)
+{
+  const int          ARGC   = 1;
+  static const char* ARGV[] = {
+    "ProgramName",
+    "--output=/usr"
+  };
+
+  EXPECT_FALSE(obj->parse(ARGC, ARGV));
 }

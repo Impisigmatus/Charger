@@ -15,10 +15,13 @@ public:
 
   template<typename T>
   void addOption(const std::string& name,
-                 const std::string& description)
+                 const std::string& description,
+                 const bool         required = false)
   {
     auto semantic = boost::program_options::value<T>();
     mOptions.add_options()(name.c_str(), semantic, description.c_str());
+    if (required)
+      mRequiredList.push_back(name.substr(0, name.find(',')));
   }
 
   template<typename T>
@@ -34,6 +37,8 @@ public:
 private:
   boost::program_options::options_description mOptions;
   boost::program_options::variables_map       mData;
+
+  std::vector<std::string> mRequiredList;
 
 };
 
