@@ -6,7 +6,7 @@ TEST_F(CommandLineArgsF, Help)
 {
   const int          ARGC   = 2;
   static const char* ARGV[] = {
-    "ProgrammName",
+    "ProgramName",
     "-h"
   };
 
@@ -17,7 +17,7 @@ TEST_F(CommandLineArgsF, Args)
 {
   const int          ARGC   = 3;
   static const char* ARGV[] = {
-    "ProgrammName",
+    "ProgramName",
     "-I /var",
     "--output=/usr"
   };
