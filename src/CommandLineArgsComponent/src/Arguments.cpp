@@ -25,13 +25,9 @@ bool Arguments::parse(int argc, const char** argv)
   return true;
 }
 
-void Arguments::handle() const
+bool Arguments::has(const std::string& name) const
 {
-  if (mData.count("input") && mData.count("output"))
-    std::cerr << "Input: "  << mData["input"].as<std::string>()  << std::endl
-              << "Output: " << mData["output"].as<std::string>() << std::endl;
-  else
-    std::cerr << "Please, use --help for more information" << std::endl;\
+  return mData.count(name.c_str());
 }
 
 } // namespace CommandLineArgs

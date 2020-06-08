@@ -21,9 +21,15 @@ public:
     mOptions.add_options()(name.c_str(), semantic, description.c_str());
   }
 
+  template<typename T>
+  T get(const std::string& name) const
+  {
+    return mData[name].as<T>();
+  }
+
   bool parse(int argc, const char** argv);
 
-  void handle() const;
+  bool has(const std::string& name) const;
 
 private:
   boost::program_options::options_description mOptions;
