@@ -45,9 +45,16 @@ std::map<std::string, std::string> ParserLibevent::getUriArgs(const evhttp_reque
   return args;
 }
 
-std::map<std::string, std::string> ParserLibevent::getHeaders(const evhttp_request* /*request*/)
+std::map<std::string, std::string> ParserLibevent::getHeaders(const evhttp_request* request)
 {
-  return {}; // TODO: Добавить парсинг заголовков
+
+  std::unique_ptr<evkeyvalq, decltype(&evhttp_clear_headers)> raw(request->input_headers, &evhttp_clear_headers);
+
+  std::map<std::string, std::string> headers;
+  for (auto it = raw->tqh_first; it != nullptr; it = it->next.tqe_next)
+    headers.insert({ it->key, it->value });
+
+  return headers;
 }
 
 } // namespace HttpServer
