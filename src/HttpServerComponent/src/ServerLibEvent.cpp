@@ -64,7 +64,7 @@ void ServerLibEvent::reply(evhttp_request* request, Response response)
   std::unique_ptr<evbuffer, decltype(&evbuffer_free)> buffer(evbuffer_new(), &evbuffer_free);
   evbuffer_add(buffer.get(), body.c_str(), body.length());
   evbuffer_add(buffer.get(), "\n", 1);
-  evhttp_send_reply(request, response.code, "", buffer.get());
+  evhttp_send_reply(request, response.getCode(), "", buffer.get());
 }
 
 } // namespace HttpServer

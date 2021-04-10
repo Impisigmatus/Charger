@@ -5,20 +5,31 @@
 namespace Charger {
 namespace HttpServer {
 
+Response::Response(const int&         code,
+                   const std::string& description,
+                   const std::string& body)
+  : mCode        (code)
+  , mDescription (description)
+  , mBody        (body)
+{}
+
 std::string Response::toString() const
 {
   std::stringstream stream;
-
   stream << "<HTML>"
             "  <HEAD>"
-            "    <TITLE>" << code << " " << description << "</TITLE>"
+            "    <TITLE>" << mCode << " " << mDescription << "</TITLE>"
             "  </HEAD>"
             "  <BODY>"
-            "    <H1>" << body << "</H1>"
+            "    <H1>" << mBody << "</H1>"
             "  </BODY>"
             "</HTML>";
-
   return stream.str();
+}
+
+int Response::getCode() const
+{
+  return mCode;
 }
 
 } // namespace HttpServer

@@ -6,14 +6,21 @@
 namespace Charger {
 namespace HttpServer {
 
-struct Response
+class Response
 {
 public:
+  Response(const int&         code,
+           const std::string& description,
+           const std::string& body);
+
   std::string toString() const;
 
-  int         code;
-  std::string description;
-  std::string body;
+  int getCode() const;
+
+private:
+  int         mCode;
+  std::string mDescription;
+  std::string mBody;
 
 };
 
