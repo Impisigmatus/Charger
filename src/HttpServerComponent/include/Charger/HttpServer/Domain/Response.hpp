@@ -9,7 +9,10 @@ namespace HttpServer {
 struct Response
 {
 public:
+  std::string toString() const;
+
   int         code;
+  std::string description;
   std::string body;
 
 };
