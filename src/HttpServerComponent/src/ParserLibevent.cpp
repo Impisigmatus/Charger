@@ -3,6 +3,7 @@
 #include <memory>
 #include <sstream>
 
+namespace Charger {
 namespace HttpServer {
 
 std::string ParserLibevent::getBody(const evhttp_request* request)
@@ -50,3 +51,4 @@ std::map<std::string, std::string> ParserLibevent::getHeaders(const evhttp_reque
 }
 
 } // namespace HttpServer
+} // namespace Charger

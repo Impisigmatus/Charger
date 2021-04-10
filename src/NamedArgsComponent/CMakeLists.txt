@@ -9,9 +9,6 @@ add_library(${Component}
   ${SOURCES}
 )
 
-include(GenerateExportHeader)
-generate_export_header(${Component})
-
 target_include_directories(${Component}
   PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include

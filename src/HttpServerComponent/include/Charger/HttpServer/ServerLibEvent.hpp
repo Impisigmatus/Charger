@@ -1,10 +1,11 @@
-#ifndef HTTPSERVER_SERVER_LIBEVENT_HPP
-#define HTTPSERVER_SERVER_LIBEVENT_HPP
+#ifndef CHARGER_HTTPSERVER_SERVER_LIBEVENT_HPP
+#define CHARGER_HTTPSERVER_SERVER_LIBEVENT_HPP
 
 #include <Charger/HttpServer/IServer.hpp>
 
 #include <evhttp.h>
 
+namespace Charger {
 namespace HttpServer {
 
 class ServerLibEvent : public IServer
@@ -29,5 +30,6 @@ private:
 };
 
 } // namespace HttpServer
+} // namespace Charger
 
 #endif // HTTPSERVER_SERVER_LIBEVENT_HPP

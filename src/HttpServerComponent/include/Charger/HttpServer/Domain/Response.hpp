@@ -1,8 +1,9 @@
-#ifndef HTTPSERVER_RESPONSE_HPP
-#define HTTPSERVER_RESPONSE_HPP
+#ifndef CHARGER_HTTPSERVER_RESPONSE_HPP
+#define CHARGER_HTTPSERVER_RESPONSE_HPP
 
 #include <string>
 
+namespace Charger {
 namespace HttpServer {
 
 struct Response
@@ -14,5 +15,6 @@ public:
 };
 
 } // namespace HttpServer
+} // namespace Charger
 
-#endif // HTTPSERVER_RESPONSE_HPP
+#endif // CHARGER_HTTPSERVER_RESPONSE_HPP

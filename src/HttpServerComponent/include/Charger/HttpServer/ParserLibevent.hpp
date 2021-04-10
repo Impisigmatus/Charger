@@ -1,5 +1,5 @@
-#ifndef HTTPSERVER_PARSER_LIBEVENT_HPP
-#define HTTPSERVER_PARSER_LIBEVENT_HPP
+#ifndef CHARGER_HTTPSERVER_PARSER_LIBEVENT_HPP
+#define CHARGER_HTTPSERVER_PARSER_LIBEVENT_HPP
 
 #include <evhttp.h>
 
@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 
+namespace Charger {
 namespace HttpServer {
 
 class ParserLibevent
@@ -20,5 +21,6 @@ public:
 };
 
 } // namespace HttpServer
+} // namespace Charger
 
 #endif // HTTPSERVER_PARSER_LIBEVENT_HPP

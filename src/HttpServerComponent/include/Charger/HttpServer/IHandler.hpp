@@ -1,9 +1,10 @@
-#ifndef HTTPSERVER_IHANDLER_HPP
-#define HTTPSERVER_IHANDLER_HPP
+#ifndef CHARGER_HTTPSERVER_IHANDLER_HPP
+#define CHARGER_HTTPSERVER_IHANDLER_HPP
 
 #include <Charger/HttpServer/Domain/Context.hpp>
 #include <Charger/HttpServer/Domain/Response.hpp>
 
+namespace Charger {
 namespace HttpServer {
 
 class IHandler
@@ -17,5 +18,6 @@ public:
 };
 
 } // namespace HttpServer
+} // namespace Charger
 
-#endif // HTTPSERVER_IHANDLER_HPP
+#endif // CHARGER_HTTPSERVER_IHANDLER_HPP

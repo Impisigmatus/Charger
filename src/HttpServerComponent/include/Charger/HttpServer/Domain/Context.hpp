@@ -1,10 +1,11 @@
-#ifndef HTTPSERVER_CONTEXT_HPP
-#define HTTPSERVER_CONTEXT_HPP
+#ifndef CHARGER_HTTPSERVER_CONTEXT_HPP
+#define CHARGER_HTTPSERVER_CONTEXT_HPP
 
 #include <string>
 #include <vector>
 #include <map>
 
+namespace Charger {
 namespace HttpServer {
 
 class Context
@@ -33,5 +34,6 @@ protected:
 };
 
 } // namespace HttpServer
+} // namespace Charger
 
-#endif // HTTPSERVER_CONTEXT_HPP
+#endif // CHARGER_HTTPSERVER_CONTEXT_HPP

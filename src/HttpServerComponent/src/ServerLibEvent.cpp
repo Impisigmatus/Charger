@@ -1,6 +1,7 @@
 #include <ServerLibEvent.hpp>
 #include <ParserLibevent.hpp>
 
+namespace Charger {
 namespace HttpServer {
 
 std::map<std::string, std::shared_ptr<IHandler>> ServerLibEvent::mHandlers;
@@ -63,3 +64,4 @@ void ServerLibEvent::reply(evhttp_request* request, Response response)
 }
 
 } // namespace HttpServer
+} // namespace Charger

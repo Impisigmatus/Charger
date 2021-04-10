@@ -1,5 +1,6 @@
 #include <Domain/Context.hpp>
 
+namespace Charger {
 namespace HttpServer {
 
 Context::Context(const std::string&                        hostname,
@@ -40,3 +41,4 @@ std::string Context::getBody() const
 }
 
 } // namespace HttpServer
+} // namespace Charger
