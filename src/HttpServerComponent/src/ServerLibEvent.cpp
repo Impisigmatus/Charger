@@ -5,8 +5,25 @@ namespace Charger {
 namespace HttpServer {
 
 std::map<std::string, std::shared_ptr<IHandler>> ServerLibEvent::mHandlers;
-std::string ServerLibEvent::M_NOT_FOUND  = "Not Found";
-std::string ServerLibEvent::M_BAD_METHOD = "Method Not Allowed";
+std::string ServerLibEvent::M_NOT_FOUND  = ""
+"<HTML>"
+"  <HEAD>"
+"    <TITLE>404 Not Found</TITLE>"
+"  </HEAD>"
+"  <BODY>"
+"    <H1>Not Found</H1>"
+"  </BODY>"
+"</HTML>";
+
+std::string ServerLibEvent::M_BAD_METHOD = ""
+"<HTML>"
+"  <HEAD>"
+"    <TITLE>405 Method Not Allowed</TITLE>"
+"  </HEAD>"
+"  <BODY>"
+"    <H1>Method Not Allowed</H1>"
+"  </BODY>"
+"</HTML>";
 
 ServerLibEvent::ServerLibEvent(const std::string& host, const size_t port)
   : mListener(event_base_new(), &event_base_free)
