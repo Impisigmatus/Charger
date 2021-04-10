@@ -8,13 +8,27 @@
 namespace Charger {
 namespace HttpServer {
 
+/*!
+ * \brief Интерфейс HTTP сервера
+ */
 class IServer
 {
 public:
   IServer() = default;
+  virtual ~IServer() = default;
 
-  virtual bool serve() const = 0;
+public:
+  /*!
+   * \brief Метод начала прослушивания
+   * \return int В случае успешного завершения прослушивания возвращает 0
+   */
+  virtual int serve() const = 0;
 
+  /*!
+   * \brief Добавляет класс-обработчик на определенный путь запроса
+   * \param path Путь запроса для обработки обработчиком
+   * \param handler Обработчик
+   */
   virtual void addHandler(const std::string& path,
                           const std::shared_ptr<IHandler>& handler) const = 0;
 

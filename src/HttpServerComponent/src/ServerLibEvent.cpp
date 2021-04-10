@@ -19,7 +19,7 @@ ServerLibEvent::ServerLibEvent(const std::string& host, const size_t port)
   }, nullptr);
 }
 
-bool ServerLibEvent::serve() const
+int ServerLibEvent::serve() const
 {
   return event_base_dispatch(mListener.get());
 }

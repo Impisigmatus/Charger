@@ -7,13 +7,43 @@
 namespace Charger {
 namespace HttpServer {
 
+/*!
+ * \brief Интерфейс обработчика для запрашиваемого пути
+ */
 class IHandler
 {
 public:
-  virtual Response post  (const Context& context) const = 0;
-  virtual Response put   (const Context& context) const = 0;
-  virtual Response get   (const Context& context) const = 0;
-  virtual Response remove(const Context& context) const = 0;
+  IHandler() = default;
+  virtual ~IHandler() = default;
+
+public:
+  /*!
+   * \brief Метод обработки POST метода
+   * \param ctx Контекст запроса
+   * \return Charger::HttpServer::Response Ответ отправляемый клиенту
+   */
+  virtual Response post(const Context& ctx) const = 0;
+
+  /*!
+   * \brief Метод обработки PUT метода
+   * \param ctx Контекст запроса
+   * \return Charger::HttpServer::Response Ответ отправляемый клиенту
+   */
+  virtual Response put(const Context& ctx) const = 0;
+
+  /*!
+   * \brief Метод обработки GET метода
+   * \param ctx Контекст запроса
+   * \return Charger::HttpServer::Response Ответ отправляемый клиенту
+   */
+  virtual Response get(const Context& ctx) const = 0;
+
+  /*!
+   * \brief Метод обработки REMOVE метода
+   * \param ctx Контекст запроса
+   * \return Charger::HttpServer::Response Ответ отправляемый клиенту
+   */
+  virtual Response remove(const Context& ctx) const = 0;
 
 };
 

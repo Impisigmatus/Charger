@@ -8,12 +8,20 @@
 namespace Charger {
 namespace HttpServer {
 
+/*!
+ * \brief Класс реализации HTTP сервера средствами libevent
+ */
 class ServerLibEvent : public IServer
 {
 public:
+  /*!
+   * \brief Конкструктор с параметрами запуска сервера
+   * \param host Хост на котором работает сервер
+   * \param port Порт на котором сервер будет слушать запросы
+   */
   ServerLibEvent(const std::string& host, const size_t port);
 
-  bool serve() const override;
+  int serve() const override;
   void addHandler(const std::string& path,
                   const std::shared_ptr<IHandler>& handler) const override;
 
@@ -25,8 +33,9 @@ private:
   std::unique_ptr<evhttp,     decltype(&evhttp_free)>     mServer;
 
 private:
-  static std::map<std::string, std::shared_ptr<IHandler>> mHandlers;
+  static std::map<std::string, std::shared_ptr<IHandler>> mHandlers; //!< Обработчики
 
+  // Тексты возврата HTTP ошибок
   static std::string M_NOT_FOUND;
   static std::string M_BAD_METHOD;
 
