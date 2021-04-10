@@ -11,8 +11,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 add_subdirectory(src)
 
-option(BUILD_TESTS "Building tests" OFF)
-if (BUILD_TESTS)
+option(CHARGER_ENABLE_NAMED_ARGS "Include NamedArgs component to build" ON)
+option(CHARGER_BUILD_TESTS "Building tests" OFF)
+
+if (CHARGER_BUILD_TESTS)
   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake_modules/)
   add_subdirectory(tests)
-endif (BUILD_TESTS)
+endif (CHARGER_BUILD_TESTS)
