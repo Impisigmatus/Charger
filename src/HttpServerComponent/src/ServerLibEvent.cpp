@@ -5,6 +5,8 @@ namespace Charger {
 namespace HttpServer {
 
 std::map<std::string, std::shared_ptr<IHandler>> ServerLibEvent::mHandlers;
+std::string ServerLibEvent::M_NOT_FOUND  = "Not Found";
+std::string ServerLibEvent::M_BAD_METHOD = "Method Not Allowed";
 
 ServerLibEvent::ServerLibEvent(const std::string& host, const size_t port)
   : mListener(event_base_new(), &event_base_free)
@@ -12,7 +14,7 @@ ServerLibEvent::ServerLibEvent(const std::string& host, const size_t port)
 {
   evhttp_bind_socket(mServer.get(), host.c_str(), port);
   evhttp_set_gencb(mServer.get(), [](evhttp_request* request, void*) {
-    reply(request, { HTTP_NOTFOUND, "NOT FOUND" }); // TODO: Сделать адекватный ответ
+    reply(request, { HTTP_NOTFOUND, M_NOT_FOUND });
   }, nullptr);
 }
 
@@ -49,7 +51,7 @@ void ServerLibEvent::addHandler(const std::string& path, const std::shared_ptr<I
       reply(request, handler->remove(context));
       break;
     default:
-      reply(request, { HTTP_BADMETHOD, "BAD METHOD" }); // TODO: Сделать адекватный ответ
+      reply(request, { HTTP_BADMETHOD, M_BAD_METHOD });
       return;
     }
   }, nullptr);

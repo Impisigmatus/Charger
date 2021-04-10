@@ -27,6 +27,9 @@ private:
 private:
   static std::map<std::string, std::shared_ptr<IHandler>> mHandlers;
 
+  static std::string M_NOT_FOUND;
+  static std::string M_BAD_METHOD;
+
 };
 
 } // namespace HttpServer
