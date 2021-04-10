@@ -5,6 +5,11 @@ if(CHARGER_ENABLE_NAMED_ARGS)
   list(APPEND components "NamedArgs")
 endif(CHARGER_ENABLE_NAMED_ARGS)
 
+if(CHARGER_ENABLE_HTTP_SERVER)
+  add_subdirectory(HttpServerComponent)
+  list(APPEND components "HttpServer")
+endif(CHARGER_ENABLE_HTTP_SERVER)
+
 message("Found the following ${PROJECT_NAME} components:")
 foreach(component ${components})
   message("  ${component}")
