@@ -1,15 +1,16 @@
-#include <ServerLibEvent.hpp>
-#include <ParserLibevent.hpp>
+#include <libevent/Server.hpp>
+#include <libevent/Parser.hpp>
 
 namespace Charger {
 namespace HttpServer {
+namespace libevent {
 
-std::string ServerLibEvent::M_NOT_FOUND  = "Not Found";
-std::string ServerLibEvent::M_BAD_METHOD = "Method Not Allowed";
+std::string Server::M_NOT_FOUND  = "Not Found";
+std::string Server::M_BAD_METHOD = "Method Not Allowed";
 
-std::map<std::string, std::shared_ptr<AbstractHandler>> ServerLibEvent::mHandlers;
+std::map<std::string, std::shared_ptr<AbstractHandler>> Server::mHandlers;
 
-ServerLibEvent::ServerLibEvent(const std::string& host, const size_t port)
+Server::Server(const std::string& host, const size_t port)
   : mListener(event_base_new(), &event_base_free)
   , mServer(evhttp_new(mListener.get()), &evhttp_free)
 {
@@ -19,21 +20,21 @@ ServerLibEvent::ServerLibEvent(const std::string& host, const size_t port)
   }, nullptr);
 }
 
-int ServerLibEvent::serve() const
+int Server::serve() const
 {
   return event_base_dispatch(mListener.get());
 }
 
-void ServerLibEvent::addHandler(const std::string& path, const std::shared_ptr<AbstractHandler>& handler) const
+void Server::addHandler(const std::string& path, const std::shared_ptr<AbstractHandler>& handler) const
 {
   mHandlers.insert({ path, handler });
   evhttp_set_cb(mServer.get(), path.c_str(), [](evhttp_request* request, void*) {
     Context context = {
       request->remote_host,
-      ParserLibevent::getPath(request),
-      ParserLibevent::getHeaders(request),
-      ParserLibevent::getUriArgs(request),
-      ParserLibevent::getBody(request)
+      Parser::getPath(request),
+      Parser::getHeaders(request),
+      Parser::getUriArgs(request),
+      Parser::getBody(request)
     };
 
     auto handler = mHandlers[evhttp_uri_get_path(request->uri_elems)];
@@ -58,7 +59,7 @@ void ServerLibEvent::addHandler(const std::string& path, const std::shared_ptr<A
   }, nullptr);
 }
 
-void ServerLibEvent::reply(evhttp_request* request, const Response& response)
+void Server::reply(evhttp_request* request, const Response& response)
 {
   std::unique_ptr<evbuffer, decltype(&evbuffer_free)> buffer(evbuffer_new(), &evbuffer_free);
   evbuffer_add(buffer.get(), response.body.c_str(), response.body.length());
@@ -66,5 +67,6 @@ void ServerLibEvent::reply(evhttp_request* request, const Response& response)
   evhttp_send_reply(request, response.code, response.reason.c_str(), buffer.get());
 }
 
+} // namespace libevent
 } // namespace HttpServer
 } // namespace Charger

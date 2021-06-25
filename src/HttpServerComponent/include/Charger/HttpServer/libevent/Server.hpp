@@ -7,11 +7,12 @@
 
 namespace Charger {
 namespace HttpServer {
+namespace libevent {
 
 /*!
  * \brief Класс реализации HTTP сервера средствами libevent
  */
-class ServerLibEvent : public IServer
+class Server : public IServer
 {
 public:
   /*!
@@ -19,7 +20,7 @@ public:
    * \param host Хост на котором работает сервер
    * \param port Порт на котором сервер будет слушать запросы
    */
-  ServerLibEvent(const std::string& host, const size_t port);
+  Server(const std::string& host, const size_t port);
 
   int serve() const override;
   void addHandler(const std::string& path,
@@ -41,6 +42,7 @@ private:
 
 };
 
+} // namespace libevent
 } // namespace HttpServer
 } // namespace Charger
 
