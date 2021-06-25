@@ -58,13 +58,12 @@ void ServerLibEvent::addHandler(const std::string& path, const std::shared_ptr<I
   }, nullptr);
 }
 
-void ServerLibEvent::reply(evhttp_request* request, Response response)
+void ServerLibEvent::reply(evhttp_request* request, const Response& response)
 {
-  auto body = response.toString();
   std::unique_ptr<evbuffer, decltype(&evbuffer_free)> buffer(evbuffer_new(), &evbuffer_free);
-  evbuffer_add(buffer.get(), body.c_str(), body.length());
+  evbuffer_add(buffer.get(), response.body.c_str(), response.body.length());
   evbuffer_add(buffer.get(), "\n", 1);
-  evhttp_send_reply(request, response.getCode(), "", buffer.get());
+  evhttp_send_reply(request, response.code, response.reason.c_str(), buffer.get());
 }
 
 } // namespace HttpServer

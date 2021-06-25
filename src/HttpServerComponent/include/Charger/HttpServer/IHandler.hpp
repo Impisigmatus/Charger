@@ -22,28 +22,28 @@ public:
    * \param ctx Контекст запроса
    * \return Charger::HttpServer::Response Ответ отправляемый клиенту
    */
-  virtual Response post(const Context& ctx) const = 0;
+  virtual const Response post(const Context& ctx) const = 0;
 
   /*!
    * \brief Метод обработки PUT метода
    * \param ctx Контекст запроса
    * \return Charger::HttpServer::Response Ответ отправляемый клиенту
    */
-  virtual Response put(const Context& ctx) const = 0;
+  virtual const Response put(const Context& ctx) const = 0;
 
   /*!
    * \brief Метод обработки GET метода
    * \param ctx Контекст запроса
    * \return Charger::HttpServer::Response Ответ отправляемый клиенту
    */
-  virtual Response get(const Context& ctx) const = 0;
+  virtual const Response get(const Context& ctx) const = 0;
 
   /*!
    * \brief Метод обработки REMOVE метода
    * \param ctx Контекст запроса
    * \return Charger::HttpServer::Response Ответ отправляемый клиенту
    */
-  virtual Response remove(const Context& ctx) const = 0;
+  virtual const Response remove(const Context& ctx) const = 0;
 
 };
 

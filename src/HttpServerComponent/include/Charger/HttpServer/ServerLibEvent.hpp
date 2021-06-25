@@ -26,7 +26,7 @@ public:
                   const std::shared_ptr<IHandler>& handler) const override;
 
 protected:
-  static void reply(struct evhttp_request* request, Response response);
+  static void reply(struct evhttp_request* request, const Response& response);
 
 private:
   std::unique_ptr<event_base, decltype(&event_base_free)> mListener;
