@@ -27,6 +27,11 @@ public:
                   const std::shared_ptr<AbstractHandler>& handler) const override;
 
 protected:
+  /*!
+   * \brief Ответить клиенту
+   * \param request Запрос от клиента
+   * \param response Ответ клиенту
+   */
   static void reply(struct evhttp_request* request, const Response& response);
 
 private:
