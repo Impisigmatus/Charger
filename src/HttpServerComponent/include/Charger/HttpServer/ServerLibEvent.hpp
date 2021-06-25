@@ -23,7 +23,7 @@ public:
 
   int serve() const override;
   void addHandler(const std::string& path,
-                  const std::shared_ptr<IHandler>& handler) const override;
+                  const std::shared_ptr<AbstractHandler>& handler) const override;
 
 protected:
   static void reply(struct evhttp_request* request, const Response& response);
@@ -33,7 +33,7 @@ private:
   std::unique_ptr<evhttp,     decltype(&evhttp_free)>     mServer;
 
 private:
-  static std::map<std::string, std::shared_ptr<IHandler>> mHandlers; //!< Обработчики
+  static std::map<std::string, std::shared_ptr<AbstractHandler>> mHandlers; //!< Обработчики
 
   // Тексты возврата HTTP ошибок
   static std::string M_NOT_FOUND;

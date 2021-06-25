@@ -46,7 +46,7 @@ std::string ParserLibevent::getBody(const evhttp_request* request)
 {
   auto input = request->input_buffer;
   auto length = evbuffer_get_length(input);
-  if (length < 1)
+  if (!length)
     return std::string();
 
   std::shared_ptr<char[]> body;

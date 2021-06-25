@@ -1,7 +1,7 @@
 #ifndef CHARGER_HTTPSERVER_ISERVER_HPP
 #define CHARGER_HTTPSERVER_ISERVER_HPP
 
-#include <Charger/HttpServer/IHandler.hpp>
+#include <Charger/HttpServer/AbstractHandler.hpp>
 
 #include <memory>
 
@@ -30,7 +30,7 @@ public:
    * \param handler Обработчик
    */
   virtual void addHandler(const std::string& path,
-                          const std::shared_ptr<IHandler>& handler) const = 0;
+                          const std::shared_ptr<AbstractHandler>& handler) const = 0;
 
 };
 

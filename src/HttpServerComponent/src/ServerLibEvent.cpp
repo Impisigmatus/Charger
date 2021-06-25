@@ -7,7 +7,7 @@ namespace HttpServer {
 std::string ServerLibEvent::M_NOT_FOUND  = "Not Found";
 std::string ServerLibEvent::M_BAD_METHOD = "Method Not Allowed";
 
-std::map<std::string, std::shared_ptr<IHandler>> ServerLibEvent::mHandlers;
+std::map<std::string, std::shared_ptr<AbstractHandler>> ServerLibEvent::mHandlers;
 
 ServerLibEvent::ServerLibEvent(const std::string& host, const size_t port)
   : mListener(event_base_new(), &event_base_free)
@@ -24,7 +24,7 @@ int ServerLibEvent::serve() const
   return event_base_dispatch(mListener.get());
 }
 
-void ServerLibEvent::addHandler(const std::string& path, const std::shared_ptr<IHandler>& handler) const
+void ServerLibEvent::addHandler(const std::string& path, const std::shared_ptr<AbstractHandler>& handler) const
 {
   mHandlers.insert({ path, handler });
   evhttp_set_cb(mServer.get(), path.c_str(), [](evhttp_request* request, void*) {
