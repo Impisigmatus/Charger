@@ -41,10 +41,6 @@ private:
 private:
   static std::map<std::string, std::shared_ptr<AbstractHandler>> mHandlers; //!< Обработчики
 
-  // Тексты возврата HTTP ошибок
-  static std::string M_NOT_FOUND;
-  static std::string M_BAD_METHOD;
-
 };
 
 } // namespace libevent
