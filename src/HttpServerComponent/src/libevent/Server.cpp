@@ -62,9 +62,9 @@ void Server::addHandler(const std::string& path, const std::shared_ptr<AbstractH
 void Server::reply(evhttp_request* request, const Response& response)
 {
   std::unique_ptr<evbuffer, decltype(&evbuffer_free)> buffer(evbuffer_new(), &evbuffer_free);
-  evbuffer_add(buffer.get(), response.body.c_str(), response.body.length());
+  evbuffer_add(buffer.get(), response.getBody().c_str(), response.getBody().length());
   evbuffer_add(buffer.get(), "\n", 1);
-  evhttp_send_reply(request, response.code, response.reason.c_str(), buffer.get());
+  evhttp_send_reply(request, response.getCode(), response.getReason().c_str(), buffer.get());
 }
 
 } // namespace libevent
