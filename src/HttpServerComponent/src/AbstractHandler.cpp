@@ -3,22 +3,22 @@
 namespace Charger {
 namespace HttpServer {
 
-const Response AbstractHandler::post(const Context&) const
+Response AbstractHandler::post(const Context&) const
 {
   return { 405, "Method Not Allowed" };
 }
 
-const Response AbstractHandler::put(const Context&) const
+Response AbstractHandler::put(const Context&) const
 {
   return { 405, "Method Not Allowed" };
 }
 
-const Response AbstractHandler::get(const Context&) const
+Response AbstractHandler::get(const Context&) const
 {
   return { 405, "Method Not Allowed" };
 }
 
-const Response AbstractHandler::remove(const Context&) const
+Response AbstractHandler::remove(const Context&) const
 {
   return { 405, "Method Not Allowed" };
 }
