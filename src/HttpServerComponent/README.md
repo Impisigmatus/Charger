@@ -54,6 +54,7 @@ Charger::HttpServer::Response Handler::remove(const Charger::HttpServer::Context
   return { 200, "OK", "тело" };
 }
 ```
+Тело ответа не обязательное. Если не переопределить метод, то он будет возвращать "Method Not Allowed".
 
 Создаем сервер
 ```
