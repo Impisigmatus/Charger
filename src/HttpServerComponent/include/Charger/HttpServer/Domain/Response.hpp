@@ -13,29 +13,37 @@ class Response
 {
 public:
   /*!
-   * \brief Конструктор с параметрами ответа
-   * \param code Код HTTP ответа
-   * \param description Расшифровка кода HTTP ответа
-   * \param body Тело ответа
-   */
-  Response(const int&         code,
-           const std::string& description,
-           const std::string& body);
+    * \brief Конструктор с параметрами ответа
+    * \param code Код HTTP ответа
+    * \param reason Расшифровка кода HTTP ответа
+    * \param body Тело ответа (по-умолчанию == reason)
+    */
+  Response(const size_t&      code,
+           const std::string& reason,
+           const std::string& body = "");
 
   /*!
-   * \brief Конвертирует HTTP ответ в строку
-   * \details Собирает HTML страничку ответа
-   * \return std::string Строка HTTP ответа
+   * \brief  Возвращает код HTTP ответа
+   * \return size_t код HTTP ответа
    */
-  std::string toString() const;
+  size_t getCode() const;
 
-  //! Возвращает код HTTP ответа
-  int getCode() const;
+  /*!
+   * \brief  Возвращает расшифровку кода HTTP ответа
+   * \return std::string расшифровка кода HTTP ответа
+   */
+  std::string getReason() const;
+
+  /*!
+   * \brief  Возвращает тело HTTP ответа
+   * \return std::string тело HTTP ответа
+   */
+  std::string getBody() const;
 
 private:
-  int         mCode;        //!< Код HTTP ответа
-  std::string mDescription; //!< Расшифровка кода HTTP ответа
-  std::string mBody;        //!< Тело ответа
+  int         mCode;   //!< Код HTTP ответа
+  std::string mReason; //!< Расшифровка кода HTTP ответа
+  std::string mBody;   //!< Тело ответа
 
 };
 

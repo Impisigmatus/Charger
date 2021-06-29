@@ -1,35 +1,30 @@
 #include <Domain/Response.hpp>
 
-#include <sstream>
-
 namespace Charger {
 namespace HttpServer {
 
-Response::Response(const int&         code,
-                   const std::string& description,
-                   const std::string& body)
-  : mCode        (code)
-  , mDescription (description)
-  , mBody        (body)
-{}
-
-std::string Response::toString() const
+Response::Response(const size_t& code, const std::string& reason, const std::string& body)
+  : mCode   (code)
+  , mReason (reason)
+  , mBody   (body)
 {
-  std::stringstream stream;
-  stream << "<HTML>"
-            "  <HEAD>"
-            "    <TITLE>" << mCode << " " << mDescription << "</TITLE>"
-            "  </HEAD>"
-            "  <BODY>"
-            "    <H1>" << mBody << "</H1>"
-            "  </BODY>"
-            "</HTML>";
-  return stream.str();
+  if (mBody.empty())
+    mBody = mReason;
 }
 
-int Response::getCode() const
+size_t Response::getCode() const
 {
   return mCode;
+}
+
+std::string Response::getReason() const
+{
+  return mReason;
+}
+
+std::string Response::getBody() const
+{
+  return mBody;
 }
 
 } // namespace HttpServer

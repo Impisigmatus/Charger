@@ -9,11 +9,12 @@
 
 namespace Charger {
 namespace HttpServer {
+namespace libevent {
 
 /*!
  * \brief Класс для разбора контекста для сервера на libevent
  */
-class ParserLibevent
+class Parser
 {
 public:
   /*!
@@ -49,6 +50,7 @@ public:
 
 };
 
+} // namespace libevent
 } // namespace HttpServer
 } // namespace Charger
 

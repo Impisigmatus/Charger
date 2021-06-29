@@ -8,13 +8,14 @@ namespace Charger {
 namespace HttpServer {
 
 /*!
- * \brief Интерфейс обработчика для запрашиваемого пути
+ * \brief Абстрактный класс обработчика для запрашиваемого пути
+ * \details Не реализованные методы будут возвращать 405 Method Not Allowed
  */
-class IHandler
+class AbstractHandler
 {
 public:
-  IHandler() = default;
-  virtual ~IHandler() = default;
+  AbstractHandler() = default;
+  virtual ~AbstractHandler() = default;
 
 public:
   /*!
@@ -22,28 +23,28 @@ public:
    * \param ctx Контекст запроса
    * \return Charger::HttpServer::Response Ответ отправляемый клиенту
    */
-  virtual Response post(const Context& ctx) const = 0;
+  virtual Response post(const Context& ctx) const;
 
   /*!
    * \brief Метод обработки PUT метода
    * \param ctx Контекст запроса
    * \return Charger::HttpServer::Response Ответ отправляемый клиенту
    */
-  virtual Response put(const Context& ctx) const = 0;
+  virtual Response put(const Context& ctx) const;
 
   /*!
    * \brief Метод обработки GET метода
    * \param ctx Контекст запроса
    * \return Charger::HttpServer::Response Ответ отправляемый клиенту
    */
-  virtual Response get(const Context& ctx) const = 0;
+  virtual Response get(const Context& ctx) const;
 
   /*!
    * \brief Метод обработки REMOVE метода
    * \param ctx Контекст запроса
    * \return Charger::HttpServer::Response Ответ отправляемый клиенту
    */
-  virtual Response remove(const Context& ctx) const = 0;
+  virtual Response remove(const Context& ctx) const;
 
 };
 

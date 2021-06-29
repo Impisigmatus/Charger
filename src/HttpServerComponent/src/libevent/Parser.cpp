@@ -1,12 +1,13 @@
-#include <ParserLibevent.hpp>
+#include <libevent/Parser.hpp>
 
 #include <memory>
 #include <sstream>
 
 namespace Charger {
 namespace HttpServer {
+namespace libevent {
 
-std::vector<std::string> ParserLibevent::getPath(const evhttp_request* request)
+std::vector<std::string> Parser::getPath(const evhttp_request* request)
 {
   std::vector<std::string> path;
 
@@ -18,7 +19,7 @@ std::vector<std::string> ParserLibevent::getPath(const evhttp_request* request)
   return path;
 }
 
-std::map<std::string, std::string> ParserLibevent::getUriArgs(const evhttp_request* request)
+std::map<std::string, std::string> Parser::getUriArgs(const evhttp_request* request)
 {
   struct evkeyvalq params;
   evhttp_parse_query(request->uri, &params);
@@ -31,7 +32,7 @@ std::map<std::string, std::string> ParserLibevent::getUriArgs(const evhttp_reque
   return args;
 }
 
-std::map<std::string, std::string> ParserLibevent::getHeaders(const evhttp_request* request)
+std::map<std::string, std::string> Parser::getHeaders(const evhttp_request* request)
 {
   std::unique_ptr<evkeyvalq, decltype(&evhttp_clear_headers)> raw(request->input_headers, &evhttp_clear_headers);
 
@@ -42,11 +43,11 @@ std::map<std::string, std::string> ParserLibevent::getHeaders(const evhttp_reque
   return headers;
 }
 
-std::string ParserLibevent::getBody(const evhttp_request* request)
+std::string Parser::getBody(const evhttp_request* request)
 {
   auto input = request->input_buffer;
   auto length = evbuffer_get_length(input);
-  if (length < 1)
+  if (!length)
     return std::string();
 
   std::shared_ptr<char[]> body;
@@ -56,5 +57,6 @@ std::string ParserLibevent::getBody(const evhttp_request* request)
   return body.get();
 }
 
+} // namespace libevent
 } // namespace HttpServer
 } // namespace Charger

@@ -18,8 +18,7 @@ find_library(LIBEVENT_LIB
 )
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(
-  LIBEVENT_LIB
+find_package_handle_standard_args(LibEvent REQUIRED_VARS
   LIBEVENT_INCLUDE_DIR
+  LIBEVENT_LIB
 )
-
