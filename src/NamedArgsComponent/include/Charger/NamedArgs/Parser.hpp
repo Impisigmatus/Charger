@@ -1,13 +1,13 @@
 #ifndef CHARGER_NAMEDARGS_PARSER_HPP
 #define CHARGER_NAMEDARGS_PARSER_HPP
 
-#include <charger_namedargs_export.h>
+#include <utility>
 
 namespace Charger {
 namespace NamedArgs {
 
 template<typename Tag>
-class CHARGER_NAMEDARGS_EXPORT Parser
+class Parser
 {
 public:
   Parser() = default;
