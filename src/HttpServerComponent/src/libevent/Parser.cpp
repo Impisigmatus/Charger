@@ -54,7 +54,7 @@ std::string Parser::getBody(const evhttp_request* request)
   body.reset(new char[length]);
   evbuffer_copyout(input, body.get(), length);
 
-  return body.get();
+  return std::string(body.get()).substr(0, length);
 }
 
 } // namespace libevent
