@@ -1,21 +1,20 @@
-#ifndef CHARGER_HTTPSERVER_ISERVER_HPP
-#define CHARGER_HTTPSERVER_ISERVER_HPP
+#ifndef CHARGER_HTTP_SERVER_ILISTENER_HPP
+#define CHARGER_HTTP_SERVER_ILISTENER_HPP
 
-#include <Charger/HttpServer/AbstractHandler.hpp>
+#include <Charger/Http/Server/AbstractHandler.hpp>
 
 #include <memory>
 
-namespace Charger {
-namespace HttpServer {
+namespace Charger::Http::Server {
 
 /*!
  * \brief Интерфейс HTTP сервера
  */
-class IServer
+class IListener
 {
 public:
-  IServer() = default;
-  virtual ~IServer() = default;
+  IListener() = default;
+  virtual ~IListener() = default;
 
 public:
   /*!
@@ -34,7 +33,6 @@ public:
 
 };
 
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http::Server
 
-#endif // CHARGER_HTTPSERVER_ISERVER_HPP
+#endif // CHARGER_HTTP_SERVER_ILISTENER_HPP

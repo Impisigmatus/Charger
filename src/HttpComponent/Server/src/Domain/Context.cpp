@@ -1,7 +1,6 @@
 #include <Domain/Context.hpp>
 
-namespace Charger {
-namespace HttpServer {
+namespace Charger::Http::Server {
 
 Context::Context(const std::string&                        hostname,
                  const std::vector<std::string>&           path,
@@ -40,5 +39,4 @@ std::string Context::getBody() const
   return mBody;
 }
 
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http::Server

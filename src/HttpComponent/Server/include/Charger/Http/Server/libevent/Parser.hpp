@@ -1,5 +1,5 @@
-#ifndef CHARGER_HTTPSERVER_PARSER_LIBEVENT_HPP
-#define CHARGER_HTTPSERVER_PARSER_LIBEVENT_HPP
+#ifndef CHARGER_HTTP_SERVER_LIBEVENT_PARSER_HPP
+#define CHARGER_HTTP_SERVER_LIBEVENT_PARSER_HPP
 
 #include <evhttp.h>
 
@@ -7,9 +7,7 @@
 #include <vector>
 #include <string>
 
-namespace Charger {
-namespace HttpServer {
-namespace libevent {
+namespace Charger::Http::Server::libevent {
 
 /*!
  * \brief Класс для разбора контекста для сервера на libevent
@@ -50,8 +48,6 @@ public:
 
 };
 
-} // namespace libevent
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http::Server::libevent
 
-#endif // HTTPSERVER_PARSER_LIBEVENT_HPP
+#endif // CHARGER_HTTP_SERVER_LIBEVENT_PARSER_HPP

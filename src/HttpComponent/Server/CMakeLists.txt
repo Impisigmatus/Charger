@@ -1,5 +1,5 @@
-set(Name "HttpServer")
-set(Component ${PROJECT_NAME}_${Name})
+set(Name "Server")
+set(Component ${PROJECT_NAME}_Http_${Name})
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules")
 
@@ -21,9 +21,9 @@ target_include_directories(${Component}
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_BINARY_DIR}
   PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/${Name}
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/Http/${Name}
 )
 
-add_library(${PROJECT_NAME}::${Name} ALIAS ${Component})
+add_library(${PROJECT_NAME}::Http::${Name} ALIAS ${Component})
 
 add_subdirectory(imported)

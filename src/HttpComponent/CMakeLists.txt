@@ -1,0 +1,7 @@
+if(CHARGER_ENABLE_HTTP_SERVER)
+  add_subdirectory(Server)
+endif(CHARGER_ENABLE_HTTP_SERVER)
+
+if(CHARGER_ENABLE_HTTP_CLIENT)
+  add_subdirectory(Client)
+endif(CHARGER_ENABLE_HTTP_CLIENT)

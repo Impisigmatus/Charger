@@ -1,11 +1,10 @@
-#ifndef CHARGER_HTTPSERVER_IHANDLER_HPP
-#define CHARGER_HTTPSERVER_IHANDLER_HPP
+#ifndef CHARGER_HTTP_SERVER_IHANDLER_HPP
+#define CHARGER_HTTP_SERVER_IHANDLER_HPP
 
-#include <Charger/HttpServer/Domain/Context.hpp>
-#include <Charger/HttpServer/Domain/Response.hpp>
+#include <Charger/Http/Server/Domain/Context.hpp>
+#include <Charger/Http/Server/Domain/Response.hpp>
 
-namespace Charger {
-namespace HttpServer {
+namespace Charger::Http::Server {
 
 /*!
  * \brief Абстрактный класс обработчика для запрашиваемого пути
@@ -48,7 +47,6 @@ public:
 
 };
 
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http::Server
 
-#endif // CHARGER_HTTPSERVER_IHANDLER_HPP
+#endif // CHARGER_HTTP_SERVER_IHANDLER_HPP

@@ -1,13 +1,11 @@
-#include <libevent/Server.hpp>
+#include <libevent/Listener.hpp>
 #include <libevent/Parser.hpp>
 
-namespace Charger {
-namespace HttpServer {
-namespace libevent {
+namespace Charger::Http::Server::libevent {
 
-std::map<std::string, std::shared_ptr<AbstractHandler>> Server::mHandlers;
+std::map<std::string, std::shared_ptr<AbstractHandler>> Listener::mHandlers;
 
-Server::Server(const std::string& host, const size_t port)
+Listener::Listener(const std::string& host, const size_t port)
   : mListener(event_base_new(), &event_base_free)
   , mServer(evhttp_new(mListener.get()), &evhttp_free)
 {
@@ -17,12 +15,12 @@ Server::Server(const std::string& host, const size_t port)
   }, nullptr);
 }
 
-int Server::serve() const
+int Listener::serve() const
 {
   return event_base_dispatch(mListener.get());
 }
 
-void Server::addHandler(const std::string& path, const std::shared_ptr<AbstractHandler>& handler) const
+void Listener::addHandler(const std::string& path, const std::shared_ptr<AbstractHandler>& handler) const
 {
   mHandlers.insert({ path, handler });
   evhttp_set_cb(mServer.get(), path.c_str(), [](evhttp_request* request, void*) {
@@ -56,7 +54,7 @@ void Server::addHandler(const std::string& path, const std::shared_ptr<AbstractH
   }, nullptr);
 }
 
-void Server::reply(evhttp_request* request, const Response& response)
+void Listener::reply(evhttp_request* request, const Response& response)
 {
   std::unique_ptr<evbuffer, decltype(&evbuffer_free)> buffer(evbuffer_new(), &evbuffer_free);
   evbuffer_add(buffer.get(), response.getBody().c_str(), response.getBody().length());
@@ -64,6 +62,4 @@ void Server::reply(evhttp_request* request, const Response& response)
   evhttp_send_reply(request, response.getCode(), response.getReason().c_str(), buffer.get());
 }
 
-} // namespace libevent
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http::Server::libevent

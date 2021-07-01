@@ -1,10 +1,9 @@
-#ifndef CHARGER_HTTPSERVER_RESPONSE_HPP
-#define CHARGER_HTTPSERVER_RESPONSE_HPP
+#ifndef CHARGER_HTTP_SERVER_RESPONSE_HPP
+#define CHARGER_HTTP_SERVER_RESPONSE_HPP
 
 #include <string>
 
-namespace Charger {
-namespace HttpServer {
+namespace Charger::Http {
 
 /*!
  * \brief Модель ответа на HTTP запрос
@@ -47,7 +46,6 @@ private:
 
 };
 
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http
 
-#endif // CHARGER_HTTPSERVER_RESPONSE_HPP
+#endif // CHARGER_HTTP_SERVER_RESPONSE_HPP

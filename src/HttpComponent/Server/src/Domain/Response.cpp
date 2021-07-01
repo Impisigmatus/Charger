@@ -1,7 +1,6 @@
 #include <Domain/Response.hpp>
 
-namespace Charger {
-namespace HttpServer {
+namespace Charger::Http {
 
 Response::Response(const size_t& code, const std::string& reason, const std::string& body)
   : mCode   (code)
@@ -27,5 +26,4 @@ std::string Response::getBody() const
   return mBody;
 }
 
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http

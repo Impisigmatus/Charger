@@ -3,9 +3,7 @@
 #include <memory>
 #include <sstream>
 
-namespace Charger {
-namespace HttpServer {
-namespace libevent {
+namespace Charger::Http::Server::libevent {
 
 std::vector<std::string> Parser::getPath(const evhttp_request* request)
 {
@@ -57,6 +55,4 @@ std::string Parser::getBody(const evhttp_request* request)
   return std::string(body.get()).substr(0, length);
 }
 
-} // namespace libevent
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http::Server::libevent

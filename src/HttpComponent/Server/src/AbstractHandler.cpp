@@ -1,7 +1,6 @@
-#include <Charger/HttpServer/AbstractHandler.hpp>
+#include <AbstractHandler.hpp>
 
-namespace Charger {
-namespace HttpServer {
+namespace Charger::Http::Server {
 
 Response AbstractHandler::post(const Context&) const
 {
@@ -23,5 +22,4 @@ Response AbstractHandler::remove(const Context&) const
   return { 405, "Method Not Allowed" };
 }
 
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http::Server

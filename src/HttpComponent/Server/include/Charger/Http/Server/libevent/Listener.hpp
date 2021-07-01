@@ -1,18 +1,16 @@
-#ifndef CHARGER_HTTPSERVER_SERVER_LIBEVENT_HPP
-#define CHARGER_HTTPSERVER_SERVER_LIBEVENT_HPP
+#ifndef CHARGER_HTTP_SERVER_LIBEVENT_LISTENER_HPP
+#define CHARGER_HTTP_SERVER_LIBEVENT_LISTENER_HPP
 
-#include <Charger/HttpServer/IServer.hpp>
+#include <Charger/Http/Server/IListener.hpp>
 
 #include <evhttp.h>
 
-namespace Charger {
-namespace HttpServer {
-namespace libevent {
+namespace Charger::Http::Server::libevent {
 
 /*!
  * \brief Класс реализации HTTP сервера средствами libevent
  */
-class Server : public IServer
+class Listener : public IListener
 {
 public:
   /*!
@@ -20,7 +18,7 @@ public:
    * \param host Хост на котором работает сервер
    * \param port Порт на котором сервер будет слушать запросы
    */
-  Server(const std::string& host, const size_t port);
+  Listener(const std::string& host, const size_t port);
 
   int serve() const override;
   void addHandler(const std::string& path,
@@ -43,8 +41,6 @@ private:
 
 };
 
-} // namespace libevent
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http::Server::libevent
 
-#endif // HTTPSERVER_SERVER_LIBEVENT_HPP
+#endif // CHARGER_HTTP_SERVER_LIBEVENT_LISTENER_HPP

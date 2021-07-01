@@ -1,12 +1,11 @@
-#ifndef CHARGER_HTTPSERVER_CONTEXT_HPP
-#define CHARGER_HTTPSERVER_CONTEXT_HPP
+#ifndef CHARGER_HTTP_SERVER_CONTEXT_HPP
+#define CHARGER_HTTP_SERVER_CONTEXT_HPP
 
 #include <string>
 #include <vector>
 #include <map>
 
-namespace Charger {
-namespace HttpServer {
+namespace Charger::Http::Server {
 
 /*!
  * \brief Модель в которой содержится контекст HTTP запроса
@@ -45,7 +44,6 @@ protected:
 
 };
 
-} // namespace HttpServer
-} // namespace Charger
+} // namespace Charger::Http::Server
 
-#endif // CHARGER_HTTPSERVER_CONTEXT_HPP
+#endif // CHARGER_HTTP_SERVER_CONTEXT_HPP
