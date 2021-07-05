@@ -25,14 +25,42 @@ REGISTER_TAG(Param, GET_ARGS, map);
 REGISTER_TAG(Param, DATA,     std::string);
 } // namespace Arguments
 
+/*!
+ * \brief Модель HTTP запроса
+ */
 class Request
 {
 public:
+  /*!
+   * \brief Возвращает адрес запроса
+   * \return std::string Адрес запроса
+   */
   std::string getURL() const;
+
+  /*!
+   * \brief Возвращает заголовки запроса
+   * \return std::map<std::string, std::string> Таблица заголовков запроса <заголовок, значение>
+   */
   std::map<std::string, std::string> getHeaders() const;
+
+  /*!
+   * \brief Возвращает GET параметры запроса
+   * \return std::map<std::string, std::string> Таблица GET параметров запроса <ключ, значение>
+   */
   std::map<std::string, std::string> getArgs() const;
+
+  /*!
+   * \brief Возвращает тело запроса
+   * \return std::string Тело запроса
+   */
   std::string getData() const;
 
+  /*!
+   * \brief Шаблонная функция конфигурирования запроса использующая именованные аргументы
+   * \details Вариативный шаблон требует записи вида
+   * Charger::Http::Client::Arg::<имя аргумента> = <значение аргумента> перечисленных через запятую
+   * \param args Вариативный шаблон
+   */
   template<typename ...Args>
   void set(const Args&... args)
   {
