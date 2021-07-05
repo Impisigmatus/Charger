@@ -12,7 +12,6 @@ add_library(${Component}
 target_include_directories(${Component}
   PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_BINARY_DIR}
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/${Name}
 )

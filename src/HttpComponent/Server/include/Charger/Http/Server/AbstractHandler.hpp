@@ -2,7 +2,7 @@
 #define CHARGER_HTTP_SERVER_IHANDLER_HPP
 
 #include <Charger/Http/Server/Domain/Context.hpp>
-#include <Charger/Http/Server/Domain/Response.hpp>
+#include <Charger/Http/Response.hpp>
 
 namespace Charger::Http::Server {
 

@@ -1,5 +1,5 @@
-#ifndef CHARGER_HTTP_SERVER_RESPONSE_HPP
-#define CHARGER_HTTP_SERVER_RESPONSE_HPP
+#ifndef CHARGER_HTTP_RESPONSE_HPP
+#define CHARGER_HTTP_RESPONSE_HPP
 
 #include <string>
 
@@ -48,4 +48,4 @@ private:
 
 } // namespace Charger::Http
 
-#endif // CHARGER_HTTP_SERVER_RESPONSE_HPP
+#endif // CHARGER_HTTP_RESPONSE_HPP

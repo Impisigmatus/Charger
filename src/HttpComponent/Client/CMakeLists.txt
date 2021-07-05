@@ -1,20 +1,31 @@
-set(Name "Client")
-set(Component ${PROJECT_NAME}_Http_${Name})
+set(NAME "Client")
+set(SUB_COMPONENT ${PROJECT_NAME}_${COMPONENT_NAME}_${NAME})
+
+set(CURL_LIBRARY "-lcurl")
+find_package(CURL REQUIRED)
 
 file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp")
 file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
-add_library(${Component}
+add_library(${SUB_COMPONENT}
   ${HEADERS}
   ${SOURCES}
 )
 
-target_include_directories(${Component}
+target_link_libraries(${SUB_COMPONENT}
   PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_BINARY_DIR}
+    Charger::NamedArgs
   PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/Http/${Name}
+    ${CURL_LIBRARIES}
+    Charger::Http
 )
 
-add_library(${PROJECT_NAME}::Http::${Name} ALIAS ${Component})
+target_include_directories(${SUB_COMPONENT}
+  PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/${COMPONENT_NAME}/${NAME}
+    ${CURL_INCLUDE_DIR}
+)
+
+add_library(${PROJECT_NAME}::${COMPONENT_NAME}::${NAME} ALIAS ${SUB_COMPONENT})

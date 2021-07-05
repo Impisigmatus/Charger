@@ -34,7 +34,6 @@ public:
   std::map<std::string, std::string> getArgs()     const;
   std::string                        getBody()     const;
 
-
 protected:
   std::string                        mHostname; //!< Хост с которого получен запрос
   std::vector<std::string>           mPath;     //!< Путь к которому произошло обращение

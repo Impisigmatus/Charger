@@ -18,7 +18,6 @@ else()
   set(DEFAULT_OPT ON)
 endif()
 
-option(CHARGER_ENABLE_NAMED_ARGS  "Include NamedArgs component to build"  ${DEFAULT_OPT})
 option(CHARGER_ENABLE_HTTP_SERVER "Include HttpServer component to build" ${DEFAULT_OPT})
 option(CHARGER_ENABLE_HTTP_CLIENT "Include HttpClient component to build" ${DEFAULT_OPT})
 option(CHARGER_BUILD_TESTS        "Building tests"                        ${DEFAULT_OPT})

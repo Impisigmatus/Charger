@@ -1,4 +1,4 @@
-#include <Domain/Response.hpp>
+#include <Response.hpp>
 
 namespace Charger::Http {
 
