@@ -3,8 +3,7 @@
 
 #include <utility>
 
-namespace Charger {
-namespace NamedArgs {
+namespace Charger::NamedArgs {
 
 template<typename Tag>
 class Parser
@@ -36,7 +35,6 @@ public:
 
 };
 
-} // namespace NamedArgs
-} // namespace Charger
+} // namespace Charger::NamedArgs
 
 #endif // CHARGER_NAMEDARGS_PARSER_HPP

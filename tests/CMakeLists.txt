@@ -5,3 +5,4 @@ if (UNIX)
 endif (UNIX)
 
 add_subdirectory(NamedArgs_test)
+add_subdirectory(Http_test)

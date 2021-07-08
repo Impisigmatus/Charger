@@ -31,18 +31,21 @@ add_subdirectory(Charger)
 Включаем в CMake опциях компоненты которые нам необходимы.
 
 Доступные компоненты:
-* [NamedArgs](src/NamedArgsComponent/README.md) (CHARGER_ENABLE_NAMED_ARGS) для добавления возможности использования именованных аргументов;
-* [HttpServer](src/HttpServerComponent/README.md)  (CHARGER_ENABLE_HTTP_SERVER) для добавления возможности обработки HTTP-запросов;
+* [NamedArgs](src/NamedArgsComponent/README.md) Для добавления возможности использования именованных аргументов (ВКЛЮЧЕН ВСЕГДА);
+* [Http::Server](src/HttpComponent/Server/README.md)  (CHARGER_ENABLE_HTTP_SERVER) для добавления возможности обработки HTTP-запросов;
+* [Http::Client](src/HttpComponent/Client/README.md)  (CHARGER_ENABLE_HTTP_CLIENT) для добавления возможности отправки HTTP-запросов;
 
 И линкуем нужные компоненты
 ```
 target_link_libraries(${PROJECT_NAME}
   PRIVATE
-    Charger::HttpServer
+    Charger::NamedArgs
+    Charger::Http::Server
 )
 ```
 
-## TODO
-В данный момент планируется реализация компонентов:
+<!--
+TODO:
 * ProgramOptions для добавления возможности конфигурирования приложения;
-* Terminator для добавления возможности корректного прерывания исполнения методов;
+* Terminator для добавления возможности корректного прерывания исполнения методов; 
+-->
