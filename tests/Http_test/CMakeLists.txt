@@ -8,4 +8,5 @@ target_link_libraries(${PROJECT_NAME}
   PRIVATE
     Charger::Http
     Charger::Http::Client
+    Charger::Http::Server
 )

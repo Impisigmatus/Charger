@@ -15,9 +15,17 @@ Listener::Listener(const std::string& host, const size_t port)
   }, nullptr);
 }
 
-int Listener::serve() const
+void Listener::serve() const
 {
-  return event_base_dispatch(mListener.get());
+  mThread.reset(new std::thread([&]() {
+    event_base_dispatch(mListener.get());
+  }));
+}
+
+void Listener::stop() const
+{
+  event_base_loopbreak(mListener.get());
+  mThread->detach();
 }
 
 void Listener::addHandler(const std::string& path, const std::shared_ptr<AbstractHandler>& handler) const

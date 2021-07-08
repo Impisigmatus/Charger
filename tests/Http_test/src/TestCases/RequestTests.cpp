@@ -2,8 +2,6 @@
 
 #include <Charger/Http/Client/Domain/Request.hpp>
 
-#include <Charger/Http/Client/curl/Speaker.hpp>
-
 TEST(Request, Set)
 {
   std::map<std::string, std::string> args = {
@@ -27,5 +25,3 @@ TEST(Request, Set)
   EXPECT_EQ(request.getHeaders(), headers);
   EXPECT_EQ(request.getArgs(), args);
 }
-
-// TODO Сделать комплексный тест для клиент-сервера

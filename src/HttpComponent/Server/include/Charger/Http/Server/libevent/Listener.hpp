@@ -5,6 +5,8 @@
 
 #include <evhttp.h>
 
+#include <thread>
+
 namespace Charger::Http::Server::libevent {
 
 /*!
@@ -20,7 +22,8 @@ public:
    */
   Listener(const std::string& host, const size_t port);
 
-  int serve() const override;
+  void serve() const override;
+  void stop() const override;
   void addHandler(const std::string& path,
                   const std::shared_ptr<AbstractHandler>& handler) const override;
 
@@ -35,6 +38,8 @@ protected:
 private:
   std::unique_ptr<event_base, decltype(&event_base_free)> mListener;
   std::unique_ptr<evhttp,     decltype(&evhttp_free)>     mServer;
+
+  mutable std::unique_ptr<std::thread> mThread;
 
 private:
   static std::map<std::string, std::shared_ptr<AbstractHandler>> mHandlers; //!< Обработчики

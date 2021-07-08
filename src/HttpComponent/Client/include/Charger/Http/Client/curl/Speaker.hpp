@@ -12,7 +12,7 @@ namespace Charger::Http::Client::curl {
 /*!
  * \brief Класс реализации HTTP клиента средствами libcurl
  */
-class Speaker : ISpeaker
+class Speaker : public ISpeaker
 {
 public:
   /*!
