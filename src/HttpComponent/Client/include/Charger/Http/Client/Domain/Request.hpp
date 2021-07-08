@@ -23,7 +23,7 @@ REGISTER_TAG(Param, URL,      std::string);
 REGISTER_TAG(Param, HEADERS,  map);
 REGISTER_TAG(Param, GET_ARGS, map);
 REGISTER_TAG(Param, DATA,     std::string);
-} // namespace Arguments
+} // namespace Arg
 
 /*!
  * \brief Модель HTTP запроса

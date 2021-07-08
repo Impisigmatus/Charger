@@ -32,7 +32,8 @@ add_subdirectory(Charger)
 
 Доступные компоненты:
 * [NamedArgs](src/NamedArgsComponent/README.md) (CHARGER_ENABLE_NAMED_ARGS) для добавления возможности использования именованных аргументов;
-* [HttpServer](src/HttpServerComponent/README.md)  (CHARGER_ENABLE_HTTP_SERVER) для добавления возможности обработки HTTP-запросов;
+* [Http::Server](src/HttpComponent/Server/README.md)  (CHARGER_ENABLE_HTTP_SERVER) для добавления возможности обработки HTTP-запросов;
+* [Http::Client](src/HttpComponent/Client/README.md)  (CHARGER_ENABLE_HTTP_CLIENT) для добавления возможности обработки HTTP-запросов;
 
 И линкуем нужные компоненты
 ```

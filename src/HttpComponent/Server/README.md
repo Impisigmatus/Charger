@@ -1,26 +1,25 @@
-# Компонент HTTP-сервера HttpServer
+# Компонент HTTP-сервера Http::Server
 
 ## 1. Что умеет?
 Добаляет возможность обработки HTTP-запросов.
 
 ## 2. Зависимости
-* libevent-dev
+* libevent
 
 ## 3. Как пользоваться?
 Создаем по одному обработчику на каждый путь URI который мы хотим обрабатывать
 ```
-#include <Charger/HttpServer/IHandler.hpp>
+#include <Charger/Http/Server/AbstractHandler.hpp>
 
-class Handler : public Charger::HttpServer::IHandler
+class Handler : public Charger::Http::Server::AbstractHandler
 {
 public:
-  Charger::HttpServer::Response post  (const Charger::HttpServer::Context& ctx) const override;
-  Charger::HttpServer::Response put   (const Charger::HttpServer::Context& ctx) const override;
-  Charger::HttpServer::Response get   (const Charger::HttpServer::Context& ctx) const override;
-  Charger::HttpServer::Response remove(const Charger::HttpServer::Context& ctx) const override;
+  Charger::Http::Response post  (const Charger::Http::Server::Context& ctx) const override;
+  Charger::Http::Response put   (const Charger::Http::Server::Context& ctx) const override;
+  Charger::Http::Response get   (const Charger::Http::Server::Context& ctx) const override;
+  Charger::Http::Response remove(const Charger::Http::Server::Context& ctx) const override;
 
 };
-
 ```
 
 Добавляем реализацию обработчика:
@@ -30,25 +29,25 @@ public:
 ```
 #include "Handler.hpp"
 
-Charger::HttpServer::Response Handler::post(const Charger::HttpServer::Context&) const
+Charger::Http::Response Handler::post(const Charger::Http::Server::Context&) const
 {
   // Что-то делаем
   return { 200, "OK", "тело" };
 }
 
-Charger::HttpServer::Response Handler::put(const Charger::HttpServer::Context&) const
+Charger::Http::Response Handler::put(const Charger::Http::Server::Context&) const
 {
   // Что-то делаем
   return { 200, "OK", "тело" };
 }
 
-Charger::HttpServer::Response Handler::get(const Charger::HttpServer::Context&) const
+Charger::Http::Response Handler::get(const Charger::Http::Server::Context&) const
 {
   // Что-то делаем
   return { 200, "OK", "тело" };
 }
 
-Charger::HttpServer::Response Handler::remove(const Charger::HttpServer::Context&) const
+Charger::Http::Response Handler::remove(const Charger::Http::Server::Context&) const
 {
   // Что-то делаем
   return { 200, "OK", "тело" };
@@ -56,15 +55,16 @@ Charger::HttpServer::Response Handler::remove(const Charger::HttpServer::Context
 ```
 Тело ответа не обязательное. Если не переопределить метод, то он будет возвращать "Method Not Allowed".
 
-Создаем сервер
 ```
+// Создаем сервер
 auto server = std::make_shared<Charger::HttpServer::ServerLibEvent>("localhost", 8000);
-```
-Назначаем обработчики серверу
-```
+
+// Назначаем обработчики серверу
 server->addHandler("/path", std::make_shared<Handler>());
-```
-Запускаем прослушку
-```
-return server->serve();
+
+// Запускаем прослушку
+server->serve();
+
+// Останавливаем прослушку
+server->stop();
 ```
